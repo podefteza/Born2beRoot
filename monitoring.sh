@@ -60,5 +60,5 @@ wall "	#Architecture: $arc
 	#LVM use: $lvmu
 	#Connections TCP: $ctcp ESTABLISHED
 	#User log: $ulog
-	#Network: IP $ip ($mac)
+	#Network: IP $ip MAC ($mac)
 	#Sudo: $cmds cmd"
