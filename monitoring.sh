@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Function to calculate minutes since boot
+# Minutes since boot
 calculate_minutes_since_boot() {
     boot_time=$(who -b | awk '$1 == "system" {print $4 " " $5}')
     boot_epoch=$(date -d "$boot_time" +%s)
@@ -9,7 +9,7 @@ calculate_minutes_since_boot() {
     echo "$minutes_since_boot"
 }
 
-# Check if the current time is a multiple of the interval since boot
+# Current time vs minutes since boot
 interval_minutes=10
 minutes_since_boot=$(calculate_minutes_since_boot)
 
@@ -52,6 +52,4 @@ if [ $(( minutes_since_boot % interval_minutes )) -eq 0 ]; then
 	#User log: $ulog
 	#Network: IP $ip MAC ($mac)
 	#Sudo: $cmds cmd"
-else
-    echo "Not running monitoring script at $(date)"
 fi
