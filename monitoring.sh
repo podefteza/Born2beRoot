@@ -1,6 +1,4 @@
 #!/bin/bash
-
-# Minutes since boot
 calculate_minutes_since_boot() {
     boot_time=$(who -b | awk '$1 == "system" {print $4 " " $5}')
     boot_epoch=$(date -d "$boot_time" +%s)
@@ -9,12 +7,10 @@ calculate_minutes_since_boot() {
     echo "$minutes_since_boot"
 }
 
-# Current time vs minutes since boot
 interval_minutes=10
 minutes_since_boot=$(calculate_minutes_since_boot)
 
 if [ $(( minutes_since_boot % interval_minutes )) -eq 0 ]; then
-    # Get system information
     arc=$(uname -a)
     pcpu=$(grep "physical id" /proc/cpuinfo | sort | uniq | wc -l)
     vcpu=$(grep "^processor" /proc/cpuinfo | wc -l)
@@ -39,7 +35,6 @@ if [ $(( minutes_since_boot % interval_minutes )) -eq 0 ]; then
     mac=$(ip link show | grep "ether" | awk '{print $2}')
     cmds=$(journalctl _COMM=sudo | grep COMMAND | wc -l)
 
-    # Output results using wall
     wall "	#Architecture: $arc
 	#CPU physical: $pcpu
 	#vCPU: $vcpu
