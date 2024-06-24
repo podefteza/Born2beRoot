@@ -21,7 +21,7 @@ udisk=$(df -BM --total | grep '^total' | awk '{print $3}' | sed 's/M//')
 adisk=$(df -BM --total | grep '^total' | awk '{print $4}' | sed 's/M//')
 pdisk=$(df -BM --total | grep '^total' | awk '{printf("%.2f"), $3/$2*100}')
 
-# Convert MB to GB for display with two decimal places using awk
+# Convert MB to GB for display with two decimal places
 fdisk_gb=$(awk "BEGIN {printf \"%.2f\", $fdisk/1024}")
 udisk_gb=$(awk "BEGIN {printf \"%.2f\", $udisk/1024}")
 adisk_gb=$(awk "BEGIN {printf \"%.2f\", $adisk/1024}")
