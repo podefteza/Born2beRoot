@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Function to calculate minutes since boot
+# Calculate minutes since boot
 calculate_minutes_since_boot() {
     boot_time=$(who -b | awk '$1 == "system" {print $4 " " $5}')
     boot_epoch=$(date -d "$boot_time" +%s)
